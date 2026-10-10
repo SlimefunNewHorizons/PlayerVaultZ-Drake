@@ -10,7 +10,11 @@
     <name>PlayerVaultZ Drake Patch</name>
 
     <properties>
-        <maven.compiler.release>21</maven.compiler.release>
+        <!-- Rama port-26x (Temporada 2): JDK 25 + Paper 26.2. Parametrizado para
+             permitir -Dpaper.version=26.2.build.129-stable en build_seguro.sh. -->
+        <java.version>25</java.version>
+        <paper.version>26.2.build.129-stable</paper.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -32,7 +36,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.5-R0.1-SNAPSHOT</version>
+            <version>${paper.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
