@@ -1,36 +1,17 @@
-# PlayerVaultZ-Drake
+# PlayerVaultZ-Drake (archived)
 
-Parche privado de producción para PlayerVaultZ 1.1.0 en DrakesCraft.
+> **Superseded.** DrakesCraft now runs the unmodified upstream **PlayerVaultZ 1.3.0** by Rugzy
+> ([Modrinth](https://modrinth.com/plugin/dJVm9lDf), MIT). Upstream 1.3.0 fixes the Quick Pick duplication
+> this patch targeted, plus the navigation-bar duplication and silent save failures. Get it from Modrinth.
 
-## Motivo
+## History
 
-Quick Pick retiraba objetos desde `VaultPage#getItems()`, que devuelve una copia del arreglo. El jugador recibía el objeto, pero el slot persistente nunca cambiaba y permitía duplicarlo.
+The patch was built on PlayerVaultZ 1.1.0. Quick Pick removed items from `VaultPage#getItems()` (a copy), so the
+persistent slot never changed and the item could be duplicated. The patch mutated the real slot through
+`VaultPage#setItem`, compared full item stacks and blocked overlapping withdrawals. The source stays here for reference
+(MIT, same as upstream); see `COMPILAR.md` to rebuild it against the original 1.1.0 jar (SHA-256
+`F7225476AF8551898FA468112465C56C941E15185377B9690D642D7E28000CFB`, verified against Modrinth).
 
-Este parche:
+## License
 
-- muta el slot real mediante `VaultPage#setItem`;
-- conserva todos los metadatos de objetos Slimefun;
-- compara objetos completos, no solo su material vanilla;
-- calcula espacio real antes de retirar;
-- bloquea retiradas superpuestas mientras se persiste el vault;
-- incluye pruebas de regresión para retiros totales y parciales.
-
-## Compilación
-
-El binario original no se versiona porque no se encontró licencia pública del proyecto. Colocar `PlayerVaultZ-1.1.0.jar` en `vendor/` y validar:
-
-```text
-SHA-256: F7225476AF8551898FA468112465C56C941E15185377B9690D642D7E28000CFB
-```
-
-Luego ejecutar `mvn clean package`. El JAR final queda en `target/PlayerVaultZ-1.1.0-Drake.jar`.
-
----
-
-## 📄 License & Upstream Attribution
-
-This project is a sovereign fork maintained by [**JackStar6677-1**](https://github.com/JackStar6677-1) under [**DrakesCraft Labs**](https://github.com/SlimefunNewHorizons).
-
-- **Original Project:** Created by the upstream authors and the open-source community.
-- **DrakesCraft Optimizations:** Modernized for Paper/Purpur 1.21.11+, Java 21, high concurrency, asynchronous safety, and exploit/duplication prevention.
-- **License:** Distributed under the original **GNU General Public License v3.0 (GPLv3)** (or original upstream license). See the [LICENSE](LICENSE) file for complete terms.
+MIT. Original work © Rugzy; patch by DrakesCraft Labs.
